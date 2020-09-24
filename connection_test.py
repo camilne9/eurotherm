@@ -21,3 +21,9 @@ while True:
     temperature = instrument.read_register(1, 2, 4)
     print temperature
     time.sleep(1)
+
+
+
+
+
+# test 
