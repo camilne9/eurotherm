@@ -17,7 +17,7 @@ import math
 
 
 class eurotherm2408(object):
-    def __init__(self, serialPort, slaveAddress=1, baudrate=9600 ):
+    def __init__(self, serialPort, slaveAddress=1, baudrate=19200 ):
 
         # Keep this first in the class
 

@@ -3,7 +3,7 @@ import time
 import serial
 
 # The first argument is the port and the second argument is the address.
-instrument = minimalmodbus.Instrument('/dev/ttyUSB0', 1)
+instrument = minimalmodbus.Instrument('/dev/ttyUSB1', 1)
 
 # These settings should be default but I set them explicitly to be safe.
 instrument.serial.baudrate = 19200
@@ -26,4 +26,4 @@ while True:
 
 
 
-# test 
+# test
