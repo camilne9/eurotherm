@@ -1182,11 +1182,12 @@ if __name__ == "__main__":
 
     if not args.serial_line:
         args.serial_line = "/dev/ttyAMA0"
-
+    print('before euro')
     myEuro = eurotherm2408(args.serial_line,baudrate=19200)
-
+    print('after euro')
     # Minimal modbus debug mode :
     myEuro.instrument.debug = False
+    print('end of file')
 
 
     # Check serial line param : stty -F /dev/ttyAMA0 -a
