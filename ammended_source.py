@@ -434,11 +434,13 @@ class eurotherm2408(object):
 
     def reconnect(self):
         if self.instrument != None:
+            print('no instrument')
             self.instrument.serial.close()
             time.sleep(1)
             self.instrument.serial.open()
 
         self.instrument = minimalmodbus.Instrument(self.serialPort , self.slaveAddress)
+        print(self.instrument)
         self.instrument.serial.baudrate = self.baudrate
 
         #See manual "FLOATING POINT DATA FORMATS"
