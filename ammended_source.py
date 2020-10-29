@@ -1173,18 +1173,18 @@ class eurotherm2408(object):
 
 import argparse
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Use eurotherm on a modbus serial line.')
+    #parser = argparse.ArgumentParser(description='Use eurotherm on a modbus serial line.')
 
-    parser.add_argument('serial_line', help='Which serial line is the eurotherm connected on, something like /dev/tty? /dev/ttyRP2 ...')
+    #parser.add_argument('serial_line', help='Which serial line is the eurotherm connected on, something like /dev/tty? /dev/ttyRP2 ...')
 
 
-    args = parser.parse_args()
+    #args = parser.parse_args()
 
-    if not args.serial_line:
-#        args.serial_line = "/dev/ttyAMA0"
-        args.serial_line = "/dev/ttyUSB1"
+#     if not args.serial_line:
+# #        args.serial_line = "/dev/ttyAMA0"
+#         args.serial_line = "/dev/ttyUSB1"
     print('before euro')
-    myEuro = eurotherm2408(args.serial_line,baudrate=19200)
+    myEuro = eurotherm2408("/dev/ttyUSB1",baudrate=19200)
     print('after euro')
     # Minimal modbus debug mode :
     myEuro.instrument.debug = False
