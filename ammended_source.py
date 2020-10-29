@@ -1183,7 +1183,7 @@ if __name__ == "__main__":
     if not args.serial_line:
         args.serial_line = "/dev/ttyAMA0"
 
-    myEuro = eurotherm2408(args.serial_line,baudrate=9600)
+    myEuro = eurotherm2408(args.serial_line,baudrate=19200)
 
     # Minimal modbus debug mode :
     myEuro.instrument.debug = False
