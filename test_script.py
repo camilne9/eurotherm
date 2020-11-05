@@ -20,9 +20,10 @@ setpoint_temperatures.append(myEuro.setPoint)
 
 # I set the temperature goal, wait for it to reach it
 #for temp in [25, 40, 25]:
-myEuro.setPoint(temp)
+myEuro.setPoint(25)
 
 print(myEuro.workingSetpoint)
+print(myEuro.setPoint)
 
 for i in range(30):
     print('\n Working Setpoint: \n')
