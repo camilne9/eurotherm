@@ -9,8 +9,8 @@ print(myEuro.temperature)
 print('\n Working Setpoint: \n')
 print(myEuro.workingSetpoint)
 
-print('\n Ramp Rate: \n')
-print(myEuro.rampRate)
+# print('\n Ramp Rate: \n')
+# print(myEuro.rampRate)
 
 print('\n Target Setpoint: \n')
 print(myEuro.setpoint)
