@@ -434,6 +434,8 @@ class eurotherm2408(object):
         self.reconnect()
 
     def reconnect(self):
+        print("before 1")
+        print(self.instrument)
         if self.instrument != None:
             print('no instrument')
             self.instrument.serial.close()
@@ -441,10 +443,10 @@ class eurotherm2408(object):
             self.instrument.serial.open()
 
         self.instrument = minimalmodbus.Instrument(self.serialPort , self.slaveAddress)
-        print("number 1")
+        print("after 1")
         print(self.instrument)
         self.instrument.serial.baudrate = self.baudrate
-        print("number 2")
+        print("after 2")
         print(self.instrument)
 
         #See manual "FLOATING POINT DATA FORMATS"
@@ -544,7 +546,8 @@ class eurotherm2408(object):
             value = float(value)
             if self.debugPrint : print("Value forced to be a float (was neither int or float) : "+str(value))
 
-        if( register in self._register_to_be_read_as_float.values()):
+        if False:
+        #if( register in self._register_to_be_read_as_float.values()):
             floating = self.floatingPointDataFormat
             try:
                 register32bits = int(str((2*register+8000)),16)
