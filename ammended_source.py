@@ -126,6 +126,7 @@ class eurotherm2408(object):
             "Adaptive_tune_trigger_level":100,
             "Automatic_droop_compensation__manual_reset":272,
             "Process_Variable":1,
+# below is likely the goal temp.. unless that is port 5 "Working_set_point"
             "Target_setpoint":2,
             "pc_Output_power":3,
             "Working_set_point":5,
@@ -440,8 +441,11 @@ class eurotherm2408(object):
             self.instrument.serial.open()
 
         self.instrument = minimalmodbus.Instrument(self.serialPort , self.slaveAddress)
+        print("number 1")
         print(self.instrument)
         self.instrument.serial.baudrate = self.baudrate
+        print("number 2")
+        print(self.instrument)
 
         #See manual "FLOATING POINT DATA FORMATS"
         # http://wikiserv.esrf.fr/sample_env/index.php/Eurotherm_2408#The_decimal_place_is_wrong_.28x10_or_.2F10.29
@@ -474,6 +478,7 @@ class eurotherm2408(object):
             if self.debugPrint: print(str(e))
 
     def __setattr__(self, name, value):
+        print('setting')
         notDone = True
         while notDone:
             try:
@@ -496,6 +501,7 @@ class eurotherm2408(object):
 
 
     def _readRegister(self, register):
+        print("reading register")
         if self.floatingPointDataFormat == None:
             self._resolutionUpdate_()
 
@@ -527,7 +533,7 @@ class eurotherm2408(object):
         return None
 
     def _writeRegister(self, register, value):
-
+        print("writing register")
         if self.floatingPointDataFormat == None:
             self._resolutionUpdate_()
 
@@ -1190,6 +1196,17 @@ if __name__ == "__main__":
     myEuro.instrument.debug = False
     print('end of file')
 
+    print('\n Temperature: \n')
+    print(myEuro.temperature())
+
+    print('\n Working Setpoint: \n')
+    print(myEuro.workingSetpoint())
+
+    print('\n Ramp Rate: \n')
+    print(myEuro.rampRate())
+
+    print('\n Target Setpoint: \n')
+    print(myEuro.setpoint())
 
     # Check serial line param : stty -F /dev/ttyAMA0 -a
     # reset default param: stty -F /dev/ttyAMA0 sane; stty -F /dev/ttyAMA0 -echo -echoe -echok
