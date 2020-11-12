@@ -1197,16 +1197,16 @@ if __name__ == "__main__":
     print('end of file')
 
     print('\n Temperature: \n')
-    print(myEuro.temperature())
+    print(myEuro.temperature)
 
     print('\n Working Setpoint: \n')
-    print(myEuro.workingSetpoint())
+    print(myEuro.workingSetpoint)
 
-    print('\n Ramp Rate: \n')
-    print(myEuro.rampRate())
+    # print('\n Ramp Rate: \n')
+    # print(myEuro.rampRate())
 
     print('\n Target Setpoint: \n')
-    print(myEuro.setpoint())
+    print(myEuro.setpoint)
 
     # Check serial line param : stty -F /dev/ttyAMA0 -a
     # reset default param: stty -F /dev/ttyAMA0 sane; stty -F /dev/ttyAMA0 -echo -echoe -echok
