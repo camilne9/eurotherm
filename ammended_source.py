@@ -16,7 +16,7 @@ import math
 
 
 
-class eurotherm2408(object):
+class eurotherm2408():
     def __init__(self, serialPort, slaveAddress=1, baudrate=19200 ):
 
         # Keep this first in the class
@@ -437,7 +437,7 @@ class eurotherm2408(object):
         print("before 1")
         print(self.instrument)
         if self.instrument != None:
-            print('no instrument')
+            print('instrument not none')
             self.instrument.serial.close()
             time.sleep(1)
             self.instrument.serial.open()
@@ -473,7 +473,7 @@ class eurotherm2408(object):
                 if self.debugPrint : print("reading {val} from device at register {reg} ".format(val=str(val), reg = str(self._registers[name])))
                 return val
             else:
-                return object.__getattribute__(self, name)
+                return super().__getattribute__(self, name)
         except KeyError:
             raise AttributeError("Attribute inexisting during getting {name} ".format(name=name))
         except Exception as e :
@@ -490,7 +490,7 @@ class eurotherm2408(object):
                     self._writeRegister(self._registers[name], value)
                     dict.__delattr__(self, name)
                 else:
-                    object.__setattr__(self, name, value)
+                    super().__setattr__(self, name, value)
                 notDone = False
 
             except KeyError:
@@ -546,8 +546,8 @@ class eurotherm2408(object):
             value = float(value)
             if self.debugPrint : print("Value forced to be a float (was neither int or float) : "+str(value))
 
-        if False:
-        #if( register in self._register_to_be_read_as_float.values()):
+        #if False:
+        if( register in self._register_to_be_read_as_float.values()):
             floating = self.floatingPointDataFormat
             try:
                 register32bits = int(str((2*register+8000)),16)
@@ -564,6 +564,7 @@ class eurotherm2408(object):
 
             try:
                 self.myMutex.acquire()
+                print(floating)
                 self.instrument.write_register(register, value, floating)
                 self.myMutex.release()
             except Exception as e:
