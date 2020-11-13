@@ -490,7 +490,7 @@ class eurotherm2408():
                     self._writeRegister(self._registers[name], value)
                     dict.__delattr__(self, name)
                 else:
-                    super().__setattr__(self, name, value)
+                    super().__setattr__(name, value)
                 notDone = False
 
             except KeyError:
