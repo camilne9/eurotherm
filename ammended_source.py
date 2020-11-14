@@ -469,13 +469,17 @@ class eurotherm2408():
 
 
     def __getattr__(self, name):
+        print("getter")
         try:
             if name in self._registers:
+                print("getter if")
                 val = self._readRegister(self._registers[name])
                 if self.debugPrint : print("reading {val} from device at register {reg} ".format(val=str(val), reg = str(self._registers[name])))
                 return val
             else:
+                print("getter else")
                 return super().__getattribute__(name)
+                print("getter after super")
         except KeyError:
             raise AttributeError("Attribute inexisting during getting {name} ".format(name=name))
         except Exception as e :
