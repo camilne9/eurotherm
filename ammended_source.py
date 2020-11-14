@@ -637,7 +637,7 @@ class eurotherm2408():
 
     @setpoint.setter
     def setpoint(self, value):
-
+        print("setpoint setter function")
         if self.Setpoint_Max___High_range_limit < value:
             #self.Instrument_Mode = 2
             print ("You need to set the Setpoint_Max___High_range_limit Higher in conf mode" )
@@ -647,8 +647,9 @@ class eurotherm2408():
             print("Forcing High limit")
             self.Setpoint_1_high_limit = value
 
-
+        print("past if statments")
         self.Target_setpoint=float(value)
+        print(self.Target_setpoint)
 
     @property
     def P(self):
