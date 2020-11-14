@@ -7,9 +7,13 @@ def convert_to_hex_register(register):
 
 register = 2
 decimals = 0
-instrument.read_register(register, decimals)
-instrument.read_float(convert_to_hex_register(register))
+read_register_output = instrument.read_register(register, decimals)
+print(read_register_output)
+read_float_output = instrument.read_float(convert_to_hex_register(register))
+print(read_float_output)
 
 writing_value = 20
-instrument.write_register(register, writing_value, decimals)
-instrument.write_float(convert_to_hex_register(register), writing_value)
+write_register_output = instrument.write_register(register, writing_value, decimals)
+print(write_register_output)
+write_float_output = instrument.write_float(convert_to_hex_register(register), writing_value)
+print(write_float_output)
