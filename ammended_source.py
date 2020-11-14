@@ -424,7 +424,7 @@ class eurotherm2408():
 
 
 
-        self.debugPrint = False
+        self.debugPrint = True
 
         self.serialPort=serialPort
         self.slaveAddress = slaveAddress
