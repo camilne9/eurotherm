@@ -542,6 +542,8 @@ class eurotherm2408():
                     self.myMutex.acquire()
                     print("finding floatingPointDataFormat")
                     print(self.floatingPointDataFormat)
+                    print("register:")
+                    print(register)
                     print("before fundamental read register")
                     res = self.instrument.read_register(register, self.floatingPointDataFormat)
                     print("after fundamental read register")
