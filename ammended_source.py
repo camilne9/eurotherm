@@ -508,9 +508,9 @@ class eurotherm2408():
                  time.sleep(0.2)
             except Exception as e :
                  print("except Exception")
-                if self.debugPrint: print(str(e))
-                time.sleep(0.2)
-                #self.__delattr__(name)
+                 if self.debugPrint: print(str(e))
+                 time.sleep(0.2)
+                 #self.__delattr__(name)
 
 
     def _readRegister(self, register):
