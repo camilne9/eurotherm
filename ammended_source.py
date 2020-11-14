@@ -563,11 +563,14 @@ class eurotherm2408():
             try:
                 register32bits = int(str((2*register+8000)),16)
                 self.myMutex.acquire()
+                print("before write float")
                 self.instrument.write_float(register32bits, value)
+                print("after write regiser")
                 self.myMutex.release()
             except Exception as e:
                 if self.debugPrint : print("Exception while writing register {reg} with {val} with a decimals of {dec}  \n Exception: {exc}".format(exc=str(e), reg=register, val=value, dec=floating))
                 self.myMutex.release()
+                print("write regiser, before reconnect (if)")
                 self.reconnect()
 
         else:
@@ -577,10 +580,12 @@ class eurotherm2408():
                 self.myMutex.acquire()
                 print(floating)
                 self.instrument.write_register(register, value, floating)
+                print("after write regiser")
                 self.myMutex.release()
             except Exception as e:
                 if self.debugPrint : print("Exception while writing register {reg} with {val} with a decimals of {dec}  \n Exception: {exc}".format(exc=str(e), reg=register, val=value, dec=floating))
                 self.myMutex.release()
+                print("write regiser, before reconnect (else)")
                 self.reconnect()
 
 
