@@ -473,7 +473,7 @@ class eurotherm2408():
                 if self.debugPrint : print("reading {val} from device at register {reg} ".format(val=str(val), reg = str(self._registers[name])))
                 return val
             else:
-                return super().__getattribute__(self, name)
+                return super().__getattribute__(name)
         except KeyError:
             raise AttributeError("Attribute inexisting during getting {name} ".format(name=name))
         except Exception as e :
@@ -484,19 +484,30 @@ class eurotherm2408():
         notDone = True
         while notDone:
             try:
-                dict.__setattr__(self, name, value)
+                print("try")
+                # dict.__setattr__(self, name, value)
+                super().__setattr__(name, value)
                 if(name in self._registers):
+                    print("inside if")
                     if self.debugPrint : print("writing {val} to device at register {reg} ".format(val=str(value), reg = str(self._registers[name])))
+                    print("before write register")
                     self._writeRegister(self._registers[name], value)
-                    dict.__delattr__(self, name)
+                    print("after write register")
+                    # dict.__delattr__(self, name)
+                    super().__delattr__(name)
+                    print("after deleting ")
                 else:
+                    print("inside else")
                     super().__setattr__(name, value)
+                    print("past super")
                 notDone = False
 
             except KeyError:
+                 print("except keyerror")
                  raise AttributeError("Attribute inexisting during setting {name}, could be a read only attribute ".format(name=name))
                  time.sleep(0.2)
             except Exception as e :
+                 print("except Exception")
                 if self.debugPrint: print(str(e))
                 time.sleep(0.2)
                 #self.__delattr__(name)
