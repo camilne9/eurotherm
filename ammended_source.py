@@ -453,6 +453,7 @@ class eurotherm2408():
         # http://wikiserv.esrf.fr/sample_env/index.php/Eurotherm_2408#The_decimal_place_is_wrong_.28x10_or_.2F10.29
         # Keep the following line, as calling self.resolution will set the value of sself.floatingPointDataFormat crucial in decoding the values.
         # print("Guessing equipment to be {reso} resolution format.".format(reso=self.resolution))
+        print("before setting floating point format to none")
         self.floatingPointDataFormat = None
         self._resolutionUpdate_()
 
@@ -461,6 +462,7 @@ class eurotherm2408():
     #        return super().__dir__()+self._registers.keys()
 
     def _resolutionUpdate_(self):
+        print("resolution update")
         if self.debugPrint: print("Guessing of the floating point data format")
         self.floatingPointDataFormat= self.instrument.read_register(self._registers["AA_Comms_Resolution"], 0)
 
@@ -565,7 +567,7 @@ class eurotherm2408():
                 self.myMutex.acquire()
                 print("before write float")
                 self.instrument.write_float(register32bits, value)
-                print("after write regiser")
+                print("after write float")
                 self.myMutex.release()
             except Exception as e:
                 if self.debugPrint : print("Exception while writing register {reg} with {val} with a decimals of {dec}  \n Exception: {exc}".format(exc=str(e), reg=register, val=value, dec=floating))
@@ -578,9 +580,10 @@ class eurotherm2408():
 
             try:
                 self.myMutex.acquire()
+                print("try case, before fundamental write register")
                 print(floating)
                 self.instrument.write_register(register, value, floating)
-                print("after write regiser")
+                print("after funamental write regiser")
                 self.myMutex.release()
             except Exception as e:
                 if self.debugPrint : print("Exception while writing register {reg} with {val} with a decimals of {dec}  \n Exception: {exc}".format(exc=str(e), reg=register, val=value, dec=floating))
