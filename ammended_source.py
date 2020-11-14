@@ -500,8 +500,10 @@ class eurotherm2408():
                     self._writeRegister(self._registers[name], value)
                     print("after write register")
                     # dict.__delattr__(self, name)
+                    print(self.Target_setpoint)
                     super().__delattr__(name)
                     print("after deleting ")
+                    print(self.Target_setpoint)
                 else:
                     print("inside else")
                     super().__setattr__(name, value)
