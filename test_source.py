@@ -5,7 +5,7 @@ instrument = minimalmodbus.Instrument("/dev/ttyUSB1", 1)
 def convert_to_hex_register(register):
     return int(str((2*register+8000)),16)
 
-register = 24
+register = 3
 decimals = 1
 read_register_output = instrument.read_register(register, decimals)
 print(read_register_output)
