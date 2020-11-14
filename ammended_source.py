@@ -527,17 +527,22 @@ class eurotherm2408():
                 if( register in self._register_to_be_read_as_float.values()):
                     register32bits = int(str((2*register+8000)),16)
                     self.myMutex.acquire()
+                    print("before read float")
                     res = self.instrument.read_float(register32bits)
+                    print("after read float")
                     self.myMutex.release()
 
                 else:
                     self.myMutex.acquire()
+                    print("before fundamental read register")
                     res = self.instrument.read_register(register, self.floatingPointDataFormat)
+                    print("after fundamental read register")
                     self.myMutex.release()
 
             except Exception as e:
                 if self.debugPrint : print("Exception while reading register "+str(e))
                 self.myMutex.release()
+                print("read register -> reconnect")
                 self.reconnect()
 
                 # if type(res) == float:
