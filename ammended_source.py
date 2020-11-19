@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import minimalmodbus
+# import minimalmodbus
 import time
 import threading
 import math
+
+from maximalmodbus import Instrument
 
 # # For guis
 # from silx import sx
@@ -442,7 +444,8 @@ class eurotherm2408():
             time.sleep(1)
             self.instrument.serial.open()
 
-        self.instrument = minimalmodbus.Instrument(self.serialPort , self.slaveAddress)
+        # self.instrument = minimalmodbus.Instrument(self.serialPort , self.slaveAddress)
+        self.instrument = Instrument(self.serialPort , self.slaveAddress)
         print("after 1")
         print(self.instrument)
         self.instrument.serial.baudrate = self.baudrate
