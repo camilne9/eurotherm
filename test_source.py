@@ -6,7 +6,7 @@ def convert_to_hex_register(register):
     # return int(str((2*register+8000)),16)
     return 2*register+32768
 
-register = 24
+register = 3
 decimals = 0
 read_register_output = instrument.read_register(register, decimals)
 print(read_register_output)
